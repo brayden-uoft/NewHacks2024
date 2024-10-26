@@ -19,7 +19,9 @@
     "tabs"
   ],
   "web_accessible_resources": [
-    "src/homographs.json",
-    "src/common_domains.txt"
+    {
+      "resources": ["src/homographs.json", "src/common_domains.txt"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
