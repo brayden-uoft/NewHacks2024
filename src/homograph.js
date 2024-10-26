@@ -4,11 +4,8 @@
     const text = await response2.text();
     const domains = text.split('\n');
 
-
-
-
 // Checks whether two individual characters are equivalent
-function isCharHomoglyphic(letter1, letter2, hgdb) {
+function isCharHomoglyphic(letter1, letter2) {
     if (letter1 === letter2) {
         return true;
     }
@@ -18,7 +15,7 @@ function isCharHomoglyphic(letter1, letter2, hgdb) {
     return false;
 }
 
-function looksSimilar(domain1, domain2, hgdb) {
+function looksSimilar(domain1, domain2) {
     /**
      * Determine whether two domains are homographic (visually equivalent or nearly so)
      */
@@ -41,7 +38,7 @@ function looksSimilar(domain1, domain2, hgdb) {
     return true;
 }
 
-function isIDNAttacker(website, domains, hgdb) {
+function isIDNAttacker(website) {
     /**
      * Determines whether a domain is likely to be an IDN attacker
      */
