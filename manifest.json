@@ -3,6 +3,9 @@
   "name": "Hello Extensions",
   "description": "Base Level Extension",
   "version": "1.0",
+  "background": {
+    "service_worker": "service-worker.js"
+  },
   "action": {
     "default_title": "Click to open panel",
     "default_icon": "hello_extensions.png"
@@ -11,12 +14,6 @@
     "sidePanel",
     "tabs"
   ],
-  "background": {
-    "service_worker": "service-worker.js"
-  },
-  "side_panel": {
-    "default_path": "sidepanel.html"
-  },
   "content_scripts": [
     {
       "js": [
