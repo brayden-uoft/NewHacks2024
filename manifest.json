@@ -4,7 +4,7 @@
   "description": "Base Level Extension",
   "version": "1.0",
   "background": {
-    "service-worker": "src/service-worker.js",
+    "service_worker": "src/service-worker.js",
     "type": "module"
   },
   "action": {

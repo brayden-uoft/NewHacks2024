@@ -1,6 +1,6 @@
 // import './loadlistener.js';
 import * as homograph from './homograph.js';
-// import './safety-report.js';
+import * as safetyReport from './safety-report.js';
 
 const GOOGLE_ORIGIN = 'https://www.google.com';
 const hgdb = homograph.loadHomographs();
@@ -31,6 +31,8 @@ chrome.webNavigation.onCompleted.addListener((details) => {
             let domain = tab.url.match(/^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
             console.log(domain);
             console.log(homograph.isIDNAttacker(domain, domains, hgdb));
+            const report = safetyReport.handleGen(tab.url);
+            console.log(report);
         }
     });
 }, { url: [{ schemes: ["http", "https"] }] });
