@@ -1,9 +1,17 @@
-    const response =  fetch(chrome.runtime.getURL('homographs.json'));
+async function loadHomographs()
+{
+    const response = fetch (chrome.runtime.getURL('homographs.json'));
     const hgdb = await response.json();
-    const response2 = fetch(chrome.runtime.getURL('common_domains.txt'));
-    const text = await response2.text();
-    const domains = text.split('\n');
+    return hgdb;
+}
 
+async function loadDomains()
+{
+    const response = fetch(chrome.runtime.getURL('common_domains.txt'));
+    const text = await response.text();
+    const domains = text.split('\n');
+    return domains;
+}
 // Checks whether two individual characters are equivalent
 function isCharHomoglyphic(letter1, letter2) {
     if (letter1 === letter2) {
