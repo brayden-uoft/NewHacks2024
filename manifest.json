@@ -20,7 +20,11 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["src/homographs.json", "src/common_domains.txt"],
+      "resources": ["src/homographs.json"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["src/common_domains.txt"],
       "matches": ["<all_urls>"]
     }
   ]

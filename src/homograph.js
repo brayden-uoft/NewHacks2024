@@ -1,14 +1,14 @@
 async function loadHomographs()
 {
-    const response = fetch (chrome.runtime.getURL('homographs.json'));
-    const hgdb = await response.json();
+    const response = await fetch(chrome.runtime.getURL('src/homographs.json'));
+    const hgdb =  response.json();
     return hgdb;
 }
 
 async function loadDomains()
 {
-    const response = fetch(chrome.runtime.getURL('common_domains.txt'));
-    const text = await response.text();
+    const response = await fetch(chrome.runtime.getURL('src/common_domains.txt'));
+    const text =  response.text() + '';
     const domains = text.split('\n');
     return domains;
 }
