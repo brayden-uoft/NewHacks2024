@@ -4,7 +4,8 @@
   "description": "Base Level Extension",
   "version": "1.0",
   "background": {
-    "service_worker": "service-worker.js"
+    "service_worker": "src/service-worker.js",
+    "load_listener": "src/load-listener.js"
   },
   "action": {
     "default_title": "Click to open panel",
@@ -17,7 +18,7 @@
   "content_scripts": [
     {
       "js": [
-        "scripts/content.js"
+        "src/content.js"
       ],
       "matches": [
         "http://*/*",
