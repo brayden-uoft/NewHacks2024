@@ -13,7 +13,7 @@ async function loadDomains()
     return domains;
 }
 // Checks whether two individual characters are equivalent
-function isCharHomoglyphic(letter1, letter2) {
+function isCharHomoglyphic(letter1, letter2, hgdb) {
     if (letter1 === letter2) {
         return true;
     }
@@ -23,7 +23,7 @@ function isCharHomoglyphic(letter1, letter2) {
     return false;
 }
 
-function looksSimilar(domain1, domain2) {
+function looksSimilar(domain1, domain2, hgdb) {
     /**
      * Determine whether two domains are homographic (visually equivalent or nearly so)
      */
@@ -46,7 +46,7 @@ function looksSimilar(domain1, domain2) {
     return true;
 }
 
-function isIDNAttacker(website) {
+function isIDNAttacker(website, domains, hgdb) {
     /**
      * Determines whether a domain is likely to be an IDN attacker
      */
