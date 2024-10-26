@@ -60,4 +60,4 @@ function isIDNAttacker(website, domains, hgdb) {
     return false;
 }
 
-export { isIDNAttacker };
+export { isIDNAttacker, loadHomographs, loadDomains };
