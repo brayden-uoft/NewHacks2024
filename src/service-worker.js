@@ -1,3 +1,7 @@
+import './loadlistener.js';
+import './homograph.js';
+import './safety-report.js';
+
 const GOOGLE_ORIGIN = 'https://www.google.com';
 
 // Allows users to open the side panel by clicking on the action toolbar icon
