@@ -5,7 +5,7 @@
   "version": "1.0",
   "background": {
     "service_worker": "src/service-worker.js",
-    "load_listener": "src/load-listener.js"
+    "type": "module"
   },
   "action": {
     "default_title": "Click to open panel",
@@ -14,16 +14,5 @@
   "permissions": [
     "sidePanel",
     "tabs"
-  ],
-  "content_scripts": [
-    {
-      "js": [
-        "src/content.js"
-      ],
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ]
-    }
   ]
 }
