@@ -31,8 +31,7 @@ chrome.webNavigation.onCompleted.addListener((details) => {
             let domain = tab.url.match(/^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
             console.log(domain);
             console.log(homograph.isIDNAttacker(domain, domains, hgdb));
-            const report = safetyReport.handleGen(tab.url);
-            console.log(report);
+            console.log(safetyReport.gen(tab.url));
         }
     });
 }, { url: [{ schemes: ["http", "https"] }] });

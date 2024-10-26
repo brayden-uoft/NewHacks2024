@@ -6,17 +6,6 @@ import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generat
 // Fetch your API_KEY
 const API_KEY = "AIzaSyDP6A3XAgxNgauQkAGWgRalnS4VZQ3WMhQ";
 
-// Provide safety report (put into sidebar)
-async function handleGen(url) {
-    try {
-        const report = await fetch(gen(url));
-        return report;
-    } catch (error) {
-        console.error("Error generating safety report:", error);
-        throw error;
-    }
-}
-
 async function gen(url) {
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -27,4 +16,4 @@ async function gen(url) {
     return responseText;
 }
 
-export { handleGen };
+export { gen };
