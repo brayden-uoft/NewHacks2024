@@ -12,6 +12,9 @@
     "default_icon": "hello_extensions.png"
   },
   "permissions": [
+    "activeTab",
+    "scripting",
+    "webNavigation",
     "sidePanel",
     "tabs"
   ]

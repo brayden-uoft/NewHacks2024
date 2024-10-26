@@ -1,6 +1,6 @@
-import './loadlistener.js';
-import './homograph.js';
-import './safety-report.js';
+// import './loadlistener.js';
+// import './homograph.js';
+// import './safety-report.js';
 
 const GOOGLE_ORIGIN = 'https://www.google.com';
 
@@ -21,3 +21,11 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
     });
 
 });
+
+chrome.webNavigation.onCompleted.addListener((details) => {
+    chrome.tabs.get(details.tabId, (tab) => {
+        if (tab.url) {
+            console.log("Page loaded with URL:", tab.url);
+        }
+    });
+}, { url: [{ schemes: ["http", "https"] }] });
