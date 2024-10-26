@@ -1,0 +1,32 @@
+{
+    "name": "PTitle",
+    "version": "0.1.0",
+    "description": "Improves cybersecurity awareness by identifying impersonation sites and providing online safety tips.",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": ["*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [],
+        "matches": ["*"]
+      }
+    ],
+    "action": {
+      "default_icon": {
+        "16": "assets/ext-icon.png",
+        "24": "assets/ext-icon.png",
+        "32": "assets/ext-icon.png"
+      },
+      "default_title": "PTitle",
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}
