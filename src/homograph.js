@@ -51,3 +51,5 @@ function isIDNAttacker(website) {
     }
     return false;
 }
+
+export { isIDNAttacker };
