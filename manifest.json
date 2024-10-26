@@ -14,5 +14,9 @@
   "permissions": [
     "sidePanel",
     "tabs"
+  ],
+  "web_accessible_resources": [
+    "src/homographs.json",
+    "src/common_domains.txt"
   ]
 }
