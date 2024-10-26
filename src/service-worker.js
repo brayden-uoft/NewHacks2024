@@ -6,7 +6,7 @@ const GOOGLE_ORIGIN = 'https://www.google.com';
 const hgdb = homograph.loadHomographs();
 const domains = homograph.loadDomains();
 
-// Allows users to open the side panel by clicking on the action toolbar icon
+//Allows users to open the side panel by clicking on the action toolbar icon
 chrome.sidePanel
     .setPanelBehavior({ openPanelOnActionClick: true })
     .catch((error) => console.error(error));
@@ -28,7 +28,9 @@ chrome.webNavigation.onCompleted.addListener((details) => {
     chrome.tabs.get(details.tabId, (tab) => {
         if (tab.url) {
             console.log("Page loaded with URL:", tab.url);
-            console.log(homograph.isIDNAttacker(tab.url, domains, hgdb));
+            let domain = tab.url.match(/^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
+            console.log(domain);
+            console.log(homograph.isIDNAttacker(domain, domains, hgdb));
         }
     });
 }, { url: [{ schemes: ["http", "https"] }] });

@@ -8,8 +8,9 @@ async function loadHomographs()
 async function loadDomains()
 {
     const response = await fetch(chrome.runtime.getURL('src/common_domains.txt'));
-    const text =  response.text() + '';
-    const domains = text.split('\n');
+    const text =  await response.text() + '';
+    const domains = await text.split('\n');
+    //console.log(domains);
     return domains;
 }
 // Checks whether two individual characters are equivalent
@@ -50,12 +51,14 @@ function isIDNAttacker(website, domains, hgdb) {
     /**
      * Determines whether a domain is likely to be an IDN attacker
      */
-
-    for (const testDomain of domains) {
-        if (looksSimilar(website, testDomain, hgdb))
+    let i = 0;
+    while (i < domains.length)
+    {
+        if (looksSimilar(website, domains[i], hgdb))
         {
             return true;
         }
+        i++
     }
     return false;
 }
