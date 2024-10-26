@@ -1,3 +1,8 @@
+// this is a content script that runs in the current site's context (may or may not be needed)
+
+// Basically remove all of this (later)
+
+/*
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Fetch your API_KEY
@@ -26,3 +31,4 @@ async function safetyReport(url) {
 safetyReport(currentURL).then(report => {
     console.log(report);
 });
+*/

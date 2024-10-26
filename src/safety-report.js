@@ -1,0 +1,1 @@
+// This file has the safety report function to generate a safety report based on the URL of the site using AI
