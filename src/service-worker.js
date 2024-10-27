@@ -14,6 +14,7 @@ homograph.loadDomains().then(d => {
     domains = d;
 });
 
+/*
 //Allows users to open the side panel by clicking on the action toolbar icon
 chrome.sidePanel
     .setPanelBehavior({ openPanelOnActionClick: true })
@@ -31,6 +32,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
     });
 
 });
+*/
 
 chrome.webNavigation.onCompleted.addListener( (details) => {
     chrome.tabs.get(details.tabId, async (tab) => {
@@ -44,8 +46,8 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
 
             // Check if the user has chosen to proceed
             if (proceed !== 'true') {
-                //const isSuspicious = true;
-                const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
+                const isSuspicious = true;
+                // const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
                 console.log("Is suspicious:", isSuspicious);
                 if (isSuspicious) {
                     const report = await safetyReport.gen(tab.url);
@@ -57,3 +59,34 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
         }
     });
 }, { url: [{ schemes: ["http", "https"] }] });
+
+chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
+    if (message.type === 'GENERATE_SAFETY_REPORT') {
+        const tabId = sender.tab ? sender.tab.id : null;
+        if (tabId) {
+            chrome.tabs.get(tabId, async (tab) => {
+                if (tab.url) {
+                    console.log("Generating safety report for URL:", tab.url);
+                    const report = await safetyReport.gen(tab.url);
+                    const userTriggeredUrl = chrome.runtime.getURL('user-triggered.html');
+                    const redirectUrl = `${userTriggeredUrl}?url=${encodeURIComponent(tab.url)}&report=${encodeURIComponent(report)}`;
+                    chrome.tabs.update(tabId, { url: redirectUrl });
+                }
+            });
+        } else {
+            // Fallback: Get the current active tab and update its URL
+            chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+                if (tabs.length > 0) {
+                    const tab = tabs[0];
+                    if (tab.url) {
+                        console.log("Generating safety report for URL:", tab.url);
+                        const report = await safetyReport.gen(tab.url);
+                        const userTriggeredUrl = chrome.runtime.getURL('user-triggered.html');
+                        const redirectUrl = `${userTriggeredUrl}?url=${encodeURIComponent(tab.url)}&report=${encodeURIComponent(report)}`;
+                        chrome.tabs.update(tab.id, { url: redirectUrl });
+                    }
+                }
+            });
+        }
+    }
+});
