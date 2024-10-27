@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Triggered Safety Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e2e3e5;
+            color: #383d41;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #d6d8db;
+            border-radius: 5px;
+        }
+        .info {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .report {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d6d8db;
+            border: 1px solid #d6d8db;
+            border-radius: 5px;
+        }
+        .proceed-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #383d41;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info">User-triggered safety report</div>
+        <div class="report" id="safety-report">Loading safety report...</div>
+        <a href="#" id="proceed-link" class="proceed-link">Proceed</a>
+    </div>
+    
+    <script src="src/user-triggered.js"></script>
+</body>
+</html>

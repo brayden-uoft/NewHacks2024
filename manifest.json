@@ -12,6 +12,7 @@
     "default_icon": "hello_extensions.png"
   },
   "permissions": [
+    "storage",
     "activeTab",
     "scripting",
     "webNavigation",
