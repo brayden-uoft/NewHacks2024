@@ -9,7 +9,10 @@
   },
   "action": {
     "default_popup": "hello.html",
-    "default_icon": "hello_extensions.png"
+    "16": "hello_extensions.png",
+    "32": "carp32.png",
+    "48": "carp48.png",
+    "128": "carp128.png"
   },
   "permissions": [
     "storage",
@@ -21,12 +24,20 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["src/homographs.json"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "src/homographs.json"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     },
     {
-      "resources": ["src/common_domains.txt"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "src/common_domains.txt"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }
