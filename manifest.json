@@ -14,6 +14,12 @@
     "48": "carp48.png",
     "128": "carp128.png"
   },
+  "icons": {
+    "16": "hello_extensions.png",
+    "32": "carp32.png",
+    "48": "carp48.png",
+    "128": "carp128.png"
+  },
   "permissions": [
     "storage",
     "activeTab",
