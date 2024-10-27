@@ -41,6 +41,9 @@ function looksSimilar(domain1, domain2, hgdb) {
      */
     domain1 = domain1.toLowerCase();
     domain2 = domain2.toLowerCase();
+    if (domain1 === domain2) { //we do not need to worry about the actual website
+        return false;
+    }
 
     if (domain1.length !== domain2.length) {
         return false;
@@ -73,12 +76,12 @@ function isIDNAttacker(website, domains, hgdb) {
     }
 
     let i = 0;
-    console.log('testing with apple.com');
-    console.log('domain name is ');
-    console.log(domain);
-    console.log(looksSimilar('apple.com', domain, hgdb));
-    console.log('\n');
-    console.log('completed initial test');
+    // console.log('testing with apple.com');
+    // console.log('domain name is ');
+    // console.log(domain);
+    // console.log(looksSimilar('apple.com', domain, hgdb));
+    // console.log('\n');
+    // console.log('completed initial test');
     while (i < 500)
     {
         console.log("Iteration: " + i + "");
