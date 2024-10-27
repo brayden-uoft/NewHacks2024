@@ -38,14 +38,15 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
     chrome.tabs.get(details.tabId, async (tab) => {
         if (tab.url) {
             //console.log("Page loaded with URL:", tab.url);
+            console.log(hgdb);
             const url = new URL(tab.url);
             const domain = url.hostname;
             
             // Check if the user has chosen to proceed
             chrome.storage.local.get(['bypassWarning'], async (result) => {
                 if (!result.bypassWarning) {
-                    const isSuspicious = true;
-                    // const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
+                    //const isSuspicious = true;
+                    const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
                     console.log("Is suspicious:", isSuspicious);
                     if (isSuspicious) {
                         const report = await safetyReport.gen(tab.url);

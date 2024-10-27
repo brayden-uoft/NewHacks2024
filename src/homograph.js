@@ -2,9 +2,10 @@ import * as punycode from './punycode.js';
 
 async function loadHomographs()
 {
-    fetch(chrome.runtime.getURL('src/homographs.json')).then(response => response.json()).then(hgdb => {
-        return hgdb;
-    });
+    const response = await fetch(chrome.runtime.getURL('src/homographs.json'));
+    const text =  await response.text();
+    const hgdb =  JSON.parse(text);
+    return hgdb;
 }
 
 async function loadDomains()
@@ -24,7 +25,8 @@ function isCharHomoglyphic(letter1, letter2, hgdb) {
         return true;
     }
     console.log(hgdb);
-    console.log(hgdb[letter1]);
+    console.log()
+    //console.log(hgdb[letter1]);
 
     if (hgdb[letter1] && hgdb[letter1]['similar_char']) {
         return hgdb[letter1]['similar_char'].some(entry => entry['char'] === letter2);
@@ -53,7 +55,7 @@ function looksSimilar(domain1, domain2, hgdb) {
         let letter1 = domain1.charAt(i);
         let letter2 = domain2.charAt(i);
 
-        if (!isCharHomoglyphic(letter1, letter2, hgdb)) {
+        if (!isCharHomoglyphic(letter2, letter1, hgdb)) {
             return false;
         }
     }
