@@ -1,6 +1,8 @@
 // import './loadlistener.js';
 import * as homograph from './homograph.js';
 import * as safetyReport from './safety-report.js';
+import * as punycode from './punycode.js';
+
 
 const GOOGLE_ORIGIN = 'https://www.google.com';
 let hgdb;
@@ -42,7 +44,6 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
             //console.log(hgdb);
             const url = new URL(tab.url);
             const domain = url.hostname;
-
             // Check if the user has chosen to proceed
             chrome.storage.local.get(['bypassWarning'], async (result) => {
                 if (!result.bypassWarning) {
@@ -50,7 +51,7 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
                     const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
                     console.log("Is suspicious:", isSuspicious);
                     if (isSuspicious) {
-                        const report = await safetyReport.gen(tab.url);
+                        const report = await safetyReport.gen(punycode.toUnicode(tab.url));
                         const fishyUrl = chrome.runtime.getURL('fishy.html');
                         const redirectUrl = `${fishyUrl}?url=${encodeURIComponent(tab.url)}&report=${encodeURIComponent(report)}`;
                         chrome.tabs.update(details.tabId, { url: redirectUrl });

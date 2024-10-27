@@ -21,12 +21,12 @@ async function loadDomains()
 // Checks whether two individual characters are equivalent
 function isCharHomoglyphic(letter1, letter2, hgdb) {
     if (letter1 == letter2) {
-        console.log('same firsts letters');
+        // console.log('same firsts letters');
         return true;
     }
 
     if (hgdb[letter1] && hgdb[letter1]['similar_char']) {
-        console.log('lookalike character');
+        // console.log('lookalike character');
         return hgdb[letter1]['similar_char'].some(entry => entry['char'] == letter2);
 
     }
@@ -53,7 +53,7 @@ function looksSimilar(domain1, domain2, hgdb) {
         // console.log(domain2);
         let letter1 = domain1[i];
         let letter2 = domain2[i];
-        console.log(domain1, domain2);
+        // console.log(domain1, domain2);
 
         if (!isCharHomoglyphic(letter1, letter2, hgdb)) {
             return false;
@@ -81,7 +81,7 @@ function isIDNAttacker(website, domains, hgdb) {
     // console.log('completed initial test');
     while (i < 500)
     {
-        console.log("Iteration: " + i + "");
+        // console.log("Iteration: " + i + "");
         if (domain.toLowerCase() === domains[i].toLowerCase()) //we need not be concerned about the actual site
         {
             return false;
