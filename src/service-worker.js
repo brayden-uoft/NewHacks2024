@@ -42,7 +42,7 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
             //console.log(hgdb);
             const url = new URL(tab.url);
             const domain = url.hostname;
-            
+
             // Check if the user has chosen to proceed
             chrome.storage.local.get(['bypassWarning'], async (result) => {
                 if (!result.bypassWarning) {
@@ -55,6 +55,8 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
                         const redirectUrl = `${fishyUrl}?url=${encodeURIComponent(tab.url)}&report=${encodeURIComponent(report)}`;
                         chrome.tabs.update(details.tabId, { url: redirectUrl });
                     }
+                } else {
+                    chrome.storage.local.set({ bypassWarning: false });
                 }
             });
         }

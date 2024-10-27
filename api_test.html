@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+</head>
+<body>
+    <!-- Input field and button for URL -->
+    <input type="text" id="url-input" placeholder="Enter URL">
+    <button onclick="handleCheckURL()">Check URL</button>
+
+    <!-- Div to display AI response -->
+    <div id="ai-response"></div>
+
+    <!-- Import @google/generative-ai, as shown above. -->
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+    
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+        // Fetch your API_KEY
+        const API_KEY = "AIzaSyDP6A3XAgxNgauQkAGWgRalnS4VZQ3WMhQ";
+
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        const prompt = "Write a story about a magic backpack.";
+
+        async function generateContent() {
+            const result = await model.generateContent(prompt);
+            console.log(await result.response.text());
+        }
+
+        generateContent();
+
+        // Function to check URL
+        async function checkURL(url) {
+            const urlPrompt = `Is there something suspicious about the URL: ${url}? Is the site possibly questionable based on just the link? You should respond with a clear, concise report with bullet points describing reasoning - start with "Safety report: "`;
+            const result = await model.generateContent(urlPrompt);
+            const responseText = await result.response.text();
+            document.getElementById('ai-response').innerText = responseText;
+        }
+
+        // Expose handleCheckURL to global scope
+        window.handleCheckURL = function() {
+            const url = document.getElementById('url-input').value;
+            checkURL(url);
+        };
+    </script>
+</body>
+</html>
