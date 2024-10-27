@@ -40,12 +40,12 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
             //console.log("Page loaded with URL:", tab.url);
             const url = new URL(tab.url);
             const domain = url.hostname;
-            
+
             // Check if the user has chosen to proceed
             chrome.storage.local.get(['bypassWarning'], async (result) => {
                 if (!result.bypassWarning) {
-                    const isSuspicious = true;
-                    // const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
+                    //const isSuspicious = true;
+                    const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
                     console.log("Is suspicious:", isSuspicious);
                     if (isSuspicious) {
                         const report = await safetyReport.gen(tab.url);
@@ -53,6 +53,8 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
                         const redirectUrl = `${fishyUrl}?url=${encodeURIComponent(tab.url)}&report=${encodeURIComponent(report)}`;
                         chrome.tabs.update(details.tabId, { url: redirectUrl });
                     }
+                } else {
+                    chrome.storage.local.set({ bypassWarning: false });
                 }
             });
         }
