@@ -1,16 +1,21 @@
+import * as punycode from './punycode.js';
+
 async function loadHomographs()
 {
-    const response = await fetch(chrome.runtime.getURL('src/homographs.json'));
-    const hgdb =  response.json();
-    return hgdb;
+    fetch(chrome.runtime.getURL('src/homographs.json')).then(response => response.json()).then(hgdb => {
+        return hgdb;
+    });
 }
 
 async function loadDomains()
 {
+    // fetch(chrome.runtime.getURL('src/common_domains.txt')).then(response => response.text()).then(names => {names.split('\n')}).then(domains => {
+    //     return domains;
+    // })
     const response = await fetch(chrome.runtime.getURL('src/common_domains.txt'));
-    const text =  await response.text() + '';
-    const domains = await text.split('\n');
-    //console.log(domains);
+    const text =  await response.text();
+    const domains =  text.split('\n');
+    console.log(domains);
     return domains;
 }
 // Checks whether two individual characters are equivalent
@@ -51,12 +56,25 @@ function isIDNAttacker(website, domains, hgdb) {
     /**
      * Determines whether a domain is likely to be an IDN attacker
      */
+    if (website.includes('xn--')) {
+        // website=website.slice(4);
+        website = punycode.toUnicode(website);
+        console.log(website);
+
+    }
     let i = 0;
+    console.log(website);
+    console.log('testing with apple.com');
+    console.log(looksSimilar(website, 'apple.com', hgdb));
+    console.log('\n');
     while (i < domains.length)
     {
+        console.log("Iteration: " + i + "");
         if (looksSimilar(website, domains[i], hgdb))
         {
+
             return true;
+
         }
         i++
     }
