@@ -41,9 +41,6 @@ function looksSimilar(domain1, domain2, hgdb) {
      */
     domain1 = domain1.toLowerCase();
     domain2 = domain2.toLowerCase();
-    if (domain1 === domain2) { //we do not need to worry about the actual website
-        return false;
-    }
 
     if (domain1.length !== domain2.length) {
         return false;
@@ -85,6 +82,10 @@ function isIDNAttacker(website, domains, hgdb) {
     while (i < 500)
     {
         console.log("Iteration: " + i + "");
+        if (domain.toLowerCase() === domains[i].toLowerCase()) //we need not be concerned about the actual site
+        {
+            return false;
+        }
         if (looksSimilar(domains[i], domain, hgdb))
         {
 
