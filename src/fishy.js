@@ -4,7 +4,8 @@ const originalUrl = urlParams.get('url');
 const safetyReport = urlParams.get('report');
 
 // Update the safety report
-document.getElementById('safety-report').innerText = safetyReport;
+//document.getElementById('safety-report').innerText = safetyReport;
+document.getElementById('safety-report').innerHTML = marked.parse(safetyReport);
 
 // Update the proceed link
 const proceedLink = document.getElementById('proceed-link');
