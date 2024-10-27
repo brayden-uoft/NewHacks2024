@@ -4,7 +4,7 @@
   "description": "IDN Spoofing Attack Defender",
   "version": "0.0.1",
   "background": {
-    "service_worker": "src/service-worker.js",
+    "scripts": "src/service-worker.js",
     "type": "module"
   },
   "action": {
@@ -22,7 +22,6 @@
     "activeTab",
     "scripting",
     "webNavigation",
-    "sidePanel",
     "tabs"
   ],
   "web_accessible_resources": [
