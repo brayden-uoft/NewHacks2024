@@ -20,14 +20,19 @@ async function loadDomains()
 }
 // Checks whether two individual characters are equivalent
 function isCharHomoglyphic(letter1, letter2, hgdb) {
-    if (letter1 === letter2) {
+    if (letter1 == letter2) {
         return true;
     }
+    console.log(hgdb);
+    console.log(hgdb[letter1]);
+
     if (hgdb[letter1] && hgdb[letter1]['similar_char']) {
         return hgdb[letter1]['similar_char'].some(entry => entry['char'] === letter2);
     }
     return false;
 }
+
+
 
 function looksSimilar(domain1, domain2, hgdb) {
     /**
@@ -41,8 +46,12 @@ function looksSimilar(domain1, domain2, hgdb) {
     }
 
     for (let i = 0; i < domain1.length; i++) {
-        const letter1 = domain1[i];
-        const letter2 = domain2[i];
+        console.log('testing on character number ');
+        console.log(i);
+        console.log(domain1);
+        console.log(domain2);
+        let letter1 = domain1.charAt(i);
+        let letter2 = domain2.charAt(i);
 
         if (!isCharHomoglyphic(letter1, letter2, hgdb)) {
             return false;
@@ -56,21 +65,23 @@ function isIDNAttacker(website, domains, hgdb) {
     /**
      * Determines whether a domain is likely to be an IDN attacker
      */
-    if (website.includes('xn--')) {
+    let domain = website.match(/^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
+    if (domain.includes('xn--')) {
         // website=website.slice(4);
-        website = punycode.toUnicode(website);
-        console.log(website);
-
+        domain = punycode.toUnicode(domain);
     }
+
     let i = 0;
-    console.log(website);
     console.log('testing with apple.com');
-    console.log(looksSimilar(website, 'apple.com', hgdb));
+    console.log('domain name is ');
+    console.log(domain);
+    console.log(looksSimilar(domain, 'apple.com', hgdb));
     console.log('\n');
+    console.log('completed initial test');
     while (i < domains.length)
     {
         console.log("Iteration: " + i + "");
-        if (looksSimilar(website, domains[i], hgdb))
+        if (looksSimilar(domains[i], domain, hgdb))
         {
 
             return true;

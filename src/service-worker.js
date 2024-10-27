@@ -37,18 +37,18 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
 chrome.webNavigation.onCompleted.addListener( (details) => {
     chrome.tabs.get(details.tabId, async (tab) => {
         if (tab.url) {
-            console.log("Page loaded with URL:", tab.url);
+            //console.log("Page loaded with URL:", tab.url);
             const url = new URL(tab.url);
             const domain = url.hostname;
             const proceed = url.searchParams.get('proceed');
-            console.log("Domain:", domain);
-            console.log("Proceed flag:", proceed);
+            //console.log("Domain:", domain);
+            //console.log("Proceed flag:", proceed);
 
             // Check if the user has chosen to proceed
             if (proceed !== 'true') {
-                const isSuspicious = true;
-                // const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
-                console.log("Is suspicious:", isSuspicious);
+                //const isSuspicious = true;
+                const isSuspicious = homograph.isIDNAttacker(domain, domains, hgdb);
+                //console.log("Is suspicious:", isSuspicious);
                 if (isSuspicious) {
                     const report = await safetyReport.gen(tab.url);
                     const fishyUrl = chrome.runtime.getURL('fishy.html');
