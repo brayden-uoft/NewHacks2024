@@ -38,6 +38,7 @@ chrome.webNavigation.onCompleted.addListener( (details) => {
     chrome.tabs.get(details.tabId, async (tab) => {
         if (tab.url) {
             //console.log("Page loaded with URL:", tab.url);
+            console.log(hgdb);
             const url = new URL(tab.url);
             const domain = url.hostname;
 
