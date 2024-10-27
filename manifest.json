@@ -8,11 +8,7 @@
     "type": "module"
   },
   "action": {
-    "default_popup": "hello.html",
-    "16": "hello_extensions.png",
-    "32": "carp32.png",
-    "48": "carp48.png",
-    "128": "carp128.png"
+    "default_popup": "hello.html"
   },
   "icons": {
     "16": "hello_extensions.png",
