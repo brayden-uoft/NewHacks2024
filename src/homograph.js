@@ -16,20 +16,19 @@ async function loadDomains()
     const response = await fetch(chrome.runtime.getURL('src/common_domains.txt'));
     const text =  await response.text();
     const domains =  text.split('\n');
-    console.log(domains);
     return domains;
 }
 // Checks whether two individual characters are equivalent
 function isCharHomoglyphic(letter1, letter2, hgdb) {
     if (letter1 == letter2) {
+        console.log('same firsts letters');
         return true;
     }
-    console.log(hgdb);
-    console.log()
-    //console.log(hgdb[letter1]);
 
     if (hgdb[letter1] && hgdb[letter1]['similar_char']) {
-        return hgdb[letter1]['similar_char'].some(entry => entry['char'] === letter2);
+        console.log('lookalike character');
+        return hgdb[letter1]['similar_char'].some(entry => entry['char'] == letter2);
+
     }
     return false;
 }
@@ -47,19 +46,19 @@ function looksSimilar(domain1, domain2, hgdb) {
         return false;
     }
 
-    for (let i = 0; i < domain1.length; i++) {
-        console.log('testing on character number ');
-        console.log(i);
-        console.log(domain1);
-        console.log(domain2);
-        let letter1 = domain1.charAt(i);
-        let letter2 = domain2.charAt(i);
+    for (let i = 0; i < domain2.length; i++) {
+        // console.log('testing on character number ');
+        // console.log(i);
+        // console.log(domain1);
+        // console.log(domain2);
+        let letter1 = domain1[i];
+        let letter2 = domain2[i];
+        console.log(domain1, domain2);
 
-        if (!isCharHomoglyphic(letter2, letter1, hgdb)) {
+        if (!isCharHomoglyphic(letter1, letter2, hgdb)) {
             return false;
         }
     }
-
     return true;
 }
 
@@ -77,10 +76,10 @@ function isIDNAttacker(website, domains, hgdb) {
     console.log('testing with apple.com');
     console.log('domain name is ');
     console.log(domain);
-    console.log(looksSimilar(domain, 'apple.com', hgdb));
+    console.log(looksSimilar('apple.com', domain, hgdb));
     console.log('\n');
     console.log('completed initial test');
-    while (i < domains.length)
+    while (i < 500)
     {
         console.log("Iteration: " + i + "");
         if (looksSimilar(domains[i], domain, hgdb))
