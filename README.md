@@ -1,4 +1,4 @@
-# makeUofT2024
+# NewHacks2024
 # **Hackathon Project Charter: Cybersecurity Chrome Extension**
 
 ---
