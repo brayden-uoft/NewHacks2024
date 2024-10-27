@@ -18,6 +18,8 @@ Carpy will automatically scan visited domain names for possible spoofing attacks
 
 You may also generate a report on the estimated safety of any domain that you are visiting. Open the extensions menu by clicking the 🧩 puzzle piece icon at the top-right of the browser and locate Carpy. Select Generate Safety Report and a report on the trustworthiness of the domain will be provided. 
 
+Example suspicious link: [аррӏе.com](https://www.xn--80ak6aa92e.com/)
+
 ---
 
 # **Hackathon Project Charter: Cybersecurity Chrome Extension**
