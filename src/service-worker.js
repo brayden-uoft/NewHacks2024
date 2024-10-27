@@ -35,7 +35,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
 */
 
 chrome.webNavigation.onCompleted.addListener( (details) => {
-    chrome.storage.local.clear();
+    // chrome.storage.local.clear();
     chrome.tabs.get(details.tabId, async (tab) => {
         if (tab.url) {
             //console.log("Page loaded with URL:", tab.url);
