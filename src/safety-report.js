@@ -4,7 +4,7 @@
 import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generative-ai/+esm";
 
 // Fetch your API_KEY
-const API_KEY = "AIzaSyDP6A3XAgxNgauQkAGWgRalnS4VZQ3WMhQ";
+const API_KEY = "{Your API KEY}";
 
 async function gen(url) {
     const genAI = new GoogleGenerativeAI(API_KEY);

@@ -7,6 +7,8 @@
 ## **Download and Installation**
 Chrome extensions not installed through the Chrome Web Store should be loaded as unpacked extensions. To do so, first download the repository using Github (Code -> Download Zip) or by cloning the repository with your method of choice. If you downloaded the repository as a zip, extract it, making sure to save the resulting folder in a convenient location. 
 
+After downloading, make sure you add your personal API key to the `src/safety-report.js` file in place of `{Your API Key}`. Gemini 1.5 API keys can be generated for free in the [Google AI Studio](https://aistudio.google.com/app/apikey).
+
 Navigate to the Chrome extensions menu by entering `chrome://extensions` in the omnibar or by clicking the three-dots menu at the top right corner -> 🧩 Extensions -> Manage Extensions. 
 
 Click Load Unpacked at the top left of the page. Navigate to the directory to which the repository has been saved and confirm. If all has gone well, the extension will appear under All Extensions.
@@ -17,6 +19,8 @@ Click Load Unpacked at the top left of the page. Navigate to the directory to wh
 Carpy will automatically scan visited domain names for possible spoofing attacks. If one is detected, it will redirect the browser away from the potentially malicious website to a dialog explaining the potential risk and red flags posed by the domain. An option to ignore the warning and proceed is provided on the page. Manually reloading the page will reset this option.
 
 You may also generate a report on the estimated safety of any domain that you are visiting. Open the extensions menu by clicking the 🧩 puzzle piece icon at the top-right of the browser and locate Carpy. Select Generate Safety Report and a report on the trustworthiness of the domain will be provided. 
+
+Example suspicious link: [www.аррӏе.com](https://www.аррӏе.com)
 
 ---
 
