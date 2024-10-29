@@ -38,7 +38,7 @@ class k{constructor(t){this.apiKey=t}getGenerativeModel(t,e){if(!t.model)throw n
 //# sourceMappingURL=/sm/4d886f35e5b22364f7663de774f5804d3372480ab962f018ebfd1e907e34343d.map
 
 // Fetch your API_KEY
-const API_KEY = "AIzaSyDP6A3XAgxNgauQkAGWgRalnS4VZQ3WMhQ";
+const API_KEY = "{Your API Key}";
 
 async function gen(url) {
     const genAI = new k(API_KEY);
